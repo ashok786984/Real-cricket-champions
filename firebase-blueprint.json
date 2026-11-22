@@ -1,0 +1,372 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Player career profile, cumulative statistics, and rating stored under users/{userId}.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated Firebase UID matching the document ID."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Player display name."
+        },
+        "matchesPlayed": {
+          "type": "integer",
+          "description": "Total matches completed."
+        },
+        "matchesWon": {
+          "type": "integer",
+          "description": "Total matches won."
+        },
+        "totalRuns": {
+          "type": "integer",
+          "description": "Cumulative career runs scored."
+        },
+        "totalWickets": {
+          "type": "integer",
+          "description": "Cumulative career wickets taken."
+        },
+        "highScore": {
+          "type": "integer",
+          "description": "Highest individual innings score."
+        },
+        "sixesHit": {
+          "type": "integer",
+          "description": "Cumulative sixes hit."
+        },
+        "foursHit": {
+          "type": "integer",
+          "description": "Cumulative fours hit."
+        },
+        "careerLevel": {
+          "type": "integer",
+          "description": "Current career progression level (1-100)."
+        },
+        "rating": {
+          "type": "integer",
+          "description": "Competitive championship ELO rating."
+        },
+        "preferredTeamId": {
+          "type": "string",
+          "description": "Selected favorite squad ID."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp written via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp written via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "displayName",
+        "matchesPlayed",
+        "matchesWon",
+        "totalRuns",
+        "totalWickets",
+        "highScore",
+        "sixesHit",
+        "foursHit",
+        "careerLevel",
+        "rating",
+        "preferredTeamId",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "MatchHistoryRecord": {
+      "title": "MatchHistoryRecord",
+      "description": "Completed match summary stored in the user's matchHistory subcollection.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated owner UID."
+        },
+        "mode": {
+          "type": "string",
+          "description": "Game mode identifier (QUICK, T20, ODI, TEST, WORLD_CUP, FRANCHISE, CAREER, TOURNAMENT, ONLINE)."
+        },
+        "homeTeam": {
+          "type": "string",
+          "description": "Home squad display name."
+        },
+        "awayTeam": {
+          "type": "string",
+          "description": "Away squad display name."
+        },
+        "homeScore": {
+          "type": "string",
+          "description": "Formatted home innings score."
+        },
+        "awayScore": {
+          "type": "string",
+          "description": "Formatted away innings score."
+        },
+        "resultSummary": {
+          "type": "string",
+          "description": "Official match result text."
+        },
+        "won": {
+          "type": "boolean",
+          "description": "Whether the player's squad won."
+        },
+        "playerRuns": {
+          "type": "integer",
+          "description": "Runs scored by the user's team."
+        },
+        "playerWickets": {
+          "type": "integer",
+          "description": "Wickets taken by the user's team."
+        },
+        "stadiumName": {
+          "type": "string",
+          "description": "Venue name."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Completion timestamp written via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "mode",
+        "homeTeam",
+        "awayTeam",
+        "homeScore",
+        "awayScore",
+        "resultSummary",
+        "won",
+        "playerRuns",
+        "playerWickets",
+        "stadiumName",
+        "createdAt"
+      ]
+    },
+    "LeaderboardEntry": {
+      "title": "LeaderboardEntry",
+      "description": "Public non-PII championship leaderboard ranking entry keyed by user UID.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Player UID."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Public player handle."
+        },
+        "teamCode": {
+          "type": "string",
+          "description": "Short 3-letter squad code."
+        },
+        "rating": {
+          "type": "integer",
+          "description": "Championship rating."
+        },
+        "matchesWon": {
+          "type": "integer",
+          "description": "Total wins."
+        },
+        "totalRuns": {
+          "type": "integer",
+          "description": "Career runs."
+        },
+        "sixesHit": {
+          "type": "integer",
+          "description": "Total sixes."
+        },
+        "publicVisible": {
+          "type": "boolean",
+          "description": "Whether entry is visible on the global leaderboard."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last sync timestamp written via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "displayName",
+        "teamCode",
+        "rating",
+        "matchesWon",
+        "totalRuns",
+        "sixesHit",
+        "publicVisible",
+        "updatedAt"
+      ]
+    },
+    "OnlineRoom": {
+      "title": "OnlineRoom",
+      "description": "Synchronized 1v1 multiplayer cricket match room.",
+      "type": "object",
+      "properties": {
+        "roomCode": {
+          "type": "string",
+          "description": "6-character invite code."
+        },
+        "hostUid": {
+          "type": "string",
+          "description": "Room host Firebase UID."
+        },
+        "hostName": {
+          "type": "string",
+          "description": "Host player display name."
+        },
+        "guestUid": {
+          "type": "string",
+          "description": "Joining opponent Firebase UID (empty while WAITING)."
+        },
+        "guestName": {
+          "type": "string",
+          "description": "Joining opponent display name."
+        },
+        "participantUids": {
+          "type": "array",
+          "description": "1-2 participant UIDs for query alignment."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["WAITING", "IN_PROGRESS", "FINISHED"],
+          "description": "Room lifecycle state."
+        },
+        "format": {
+          "type": "string",
+          "enum": ["QUICK_5", "T20", "SUPER_OVER"],
+          "description": "Online match format."
+        },
+        "oversLimit": {
+          "type": "integer",
+          "description": "Overs per innings."
+        },
+        "stadiumId": {
+          "type": "string",
+          "description": "Selected stadium identifier."
+        },
+        "hostTeamId": {
+          "type": "string",
+          "description": "Host squad identifier."
+        },
+        "guestTeamId": {
+          "type": "string",
+          "description": "Guest squad identifier."
+        },
+        "currentInnings": {
+          "type": "integer",
+          "description": "Current innings (1 or 2)."
+        },
+        "battingSide": {
+          "type": "string",
+          "enum": ["HOST", "GUEST"],
+          "description": "Which player is currently batting."
+        },
+        "hostRuns": {
+          "type": "integer",
+          "description": "Host team runs."
+        },
+        "hostWickets": {
+          "type": "integer",
+          "description": "Host team wickets."
+        },
+        "hostBalls": {
+          "type": "integer",
+          "description": "Host legal balls faced."
+        },
+        "guestRuns": {
+          "type": "integer",
+          "description": "Guest team runs."
+        },
+        "guestWickets": {
+          "type": "integer",
+          "description": "Guest team wickets."
+        },
+        "guestBalls": {
+          "type": "integer",
+          "description": "Guest legal balls faced."
+        },
+        "lastBallEvent": {
+          "type": "string",
+          "description": "Human-readable commentary of last synchronized ball."
+        },
+        "pendingDelivery": {
+          "type": "string",
+          "description": "Encoded bowler delivery parameters for current turn."
+        },
+        "turnNumber": {
+          "type": "integer",
+          "description": "Monotonically increasing ball turn counter."
+        },
+        "winnerUid": {
+          "type": "string",
+          "description": "Winning player UID or DRAW."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp written via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp written via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "roomCode",
+        "hostUid",
+        "hostName",
+        "guestUid",
+        "guestName",
+        "participantUids",
+        "status",
+        "format",
+        "oversLimit",
+        "stadiumId",
+        "hostTeamId",
+        "guestTeamId",
+        "currentInnings",
+        "battingSide",
+        "hostRuns",
+        "hostWickets",
+        "hostBalls",
+        "guestRuns",
+        "guestWickets",
+        "guestBalls",
+        "lastBallEvent",
+        "pendingDelivery",
+        "turnNumber",
+        "winnerUid",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Authenticated user's cricket career profile and aggregate statistics."
+    },
+    "/users/{userId}/matchHistory/{matchId}": {
+      "schema": { "$ref": "#/entities/MatchHistoryRecord" },
+      "description": "Owner-scoped completed match history records."
+    },
+    "/leaderboard/{entryId}": {
+      "schema": { "$ref": "#/entities/LeaderboardEntry" },
+      "description": "Public championship leaderboard entries (non-PII, keyed by owner UID)."
+    },
+    "/onlineRooms/{roomId}": {
+      "schema": { "$ref": "#/entities/OnlineRoom" },
+      "description": "Synchronized 1v1 multiplayer cricket match rooms."
+    }
+  }
+}

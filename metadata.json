@@ -1,0 +1,6 @@
+{
+  "name": "Real Cricket Champions",
+  "description": "Mobile cricket simulation with interactive batting, bowling, fielding physics, AI opponents, tournaments, career mode, and online 1v1 multiplayer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
